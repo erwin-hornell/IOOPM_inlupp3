@@ -11,8 +11,12 @@ public class Sin extends Unary
     }
 
     @Override 
-    public double eval()
+    public SymbolicExpression eval()
     {
-        return Math.sin(this.expression.eval());
+        SymbolicExpression e = this.expression.eval();
+        if(e.isConstant())
+        {
+            return New Constant()
+        }
     }
 }

@@ -12,8 +12,8 @@ public abstract class Command extends SymbolicExpression
     }
 
     @Override 
-    public double eval() //what should commands evaluate to?
+    public SymbolicExpression eval() //what should commands evaluate to?
     {
-        return 0;
+        return this;
     }
 }

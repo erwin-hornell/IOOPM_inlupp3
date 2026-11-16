@@ -4,6 +4,7 @@ import org.ioopm.calculator.ast.symbolicexpression.atom.*;
 import org.ioopm.calculator.ast.symbolicexpression.binary.*;
 import org.ioopm.calculator.ast.symbolicexpression.unary.*;
 import org.ioopm.calculator.ast.symbolicexpression.command.*;
+import org.ioopm.calculator.ast.symbolicexpression.*;
 
 import java.io.StreamTokenizer;
 import java.io.StringReader;
@@ -15,6 +16,9 @@ import java.util.*;
  * Represents the parsing of strings into valid expressions defined in the AST.
  */
 public class CalculatorParser {
+
+    public class Environment extends HashMap<Variable, SymbolicExpression> {}
+
     private StreamTokenizer st;
     private Environment vars;
     private static char MULTIPLY = '*';
@@ -32,9 +36,8 @@ public class CalculatorParser {
     // unallowerdVars is used to check if variabel name that we
     // want to assign new meaning to is a valid name eg 3 = Quit
     // or 10 + x = L is not allowed
-    private final ArrayList < String > unallowedVars = new ArrayList < String > (Arrays.asList("Quit",
-        "Vars",
-        "Clear"));
+    private final ArrayList < String > unallowedVars = 
+                            new ArrayList < String > (Arrays.asList("Quit", "Vars","Clear"));
 
     /**
      * Used to parse the inputted string by the Calculator program
@@ -94,11 +97,11 @@ public class CalculatorParser {
      */
     private SymbolicExpression command() throws IOException {
         if (this.st.sval.equals("Quit")) {
-            return Quit.instance();
+            return new Quit();
         } else if (this.st.sval.equals("Clear")) {
-            return Clear.instance();
+            return new Clear();
         } else {
-            return Vars.instance();
+            return new Vars();
         }
     }
 

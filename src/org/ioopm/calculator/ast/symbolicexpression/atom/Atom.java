@@ -16,11 +16,6 @@ public abstract class Atom extends SymbolicExpression
         return this.value;
     }
 
-    @Override
-    public double eval()
-    {
-        return this.value;
-    }
 
 
 }
