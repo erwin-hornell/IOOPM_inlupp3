@@ -1,9 +1,15 @@
 package org.ioopm.calculator.ast.symbolicexpression.command;
 
-public class Clear extends Command
-{
-    public Clear()
-    {
-        super("vars");
+public class Clear extends Command {
+    private static final Clear theInstance = new Clear();
+    private Clear() {}
+    public static Clear instance() {
+        return theInstance;
     }
+
+    @Override
+    public String getName() {
+        return "Clear";
+    }
+    
 }

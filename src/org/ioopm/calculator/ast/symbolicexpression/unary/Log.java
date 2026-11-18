@@ -1,6 +1,8 @@
 package org.ioopm.calculator.ast.symbolicexpression.unary;
 
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
+import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
+import org.ioopm.calculator.parser.Environment;
 
 public class Log extends Unary
 {
@@ -11,8 +13,25 @@ public class Log extends Unary
     }
 
     @Override 
-    public double eval()
+    public SymbolicExpression eval(Environment env)
     {
-        return Math.log(this.expression.eval());
+        SymbolicExpression e = this.expression.eval(env);
+        if(expression.isComand()) return expression;
+        if(e.isConstant())
+        {
+            return new Constant(Math.log(((Constant)e).get()));
+        }
+        return new Log(e);
+    }
+    @Override 
+    public String getName()
+    {
+        return "Log";
+    }
+
+    @Override 
+    public String stringExpression()
+    {
+        return "Log" + expression.stringExpression();
     }
 }

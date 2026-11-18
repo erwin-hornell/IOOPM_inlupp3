@@ -6,8 +6,8 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 public abstract class Binary extends SymbolicExpression
 {
 
-    protected SymbolicExpression lhs = null;
-    protected SymbolicExpression rhs = null;
+    protected SymbolicExpression lhs;
+    protected SymbolicExpression rhs;
 
     public Binary(SymbolicExpression lhs, SymbolicExpression rhs)
     {
@@ -15,5 +15,15 @@ public abstract class Binary extends SymbolicExpression
         this.rhs = rhs;
     }
 
+    @Override 
+    public String toString(int indent) {
+        String spaces = " ".repeat(indent);
+
+        return "{\n" +
+            spaces + "  \"operator\": \"" + getName() + "\",\n" +
+            spaces + "  \"lhs\": " + lhs.toString(indent + 2) + ",\n" +
+            spaces + "  \"rhs\": " + rhs.toString(indent + 2) + "\n" +
+            spaces + "}";
+    }
 
 }

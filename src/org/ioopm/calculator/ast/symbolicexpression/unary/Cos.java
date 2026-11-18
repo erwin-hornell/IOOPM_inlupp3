@@ -1,6 +1,8 @@
 package org.ioopm.calculator.ast.symbolicexpression.unary;
 
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
+import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
+import org.ioopm.calculator.parser.Environment;
 
 public class Cos extends Unary
 {
@@ -11,8 +13,27 @@ public class Cos extends Unary
     }
 
     @Override 
-    public double eval()
+    public SymbolicExpression eval(Environment env)
     {
-        return Math.cos(this.expression.eval());
+        SymbolicExpression e = this.expression.eval(env);
+        if(expression.isComand()) return expression;
+        if(e.isConstant())
+        {
+            return new Constant(Math.cos(((Constant)e).get()));
+        }
+        return new Cos(e);
+    }
+
+
+    @Override 
+    public String getName()
+    {
+        return "Cos";
+    }
+
+    @Override 
+    public String stringExpression()
+    {
+        return "Cos" + expression.stringExpression();
     }
 }

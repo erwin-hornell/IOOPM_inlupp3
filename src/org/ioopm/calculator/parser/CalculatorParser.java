@@ -6,6 +6,8 @@ import org.ioopm.calculator.ast.symbolicexpression.unary.*;
 import org.ioopm.calculator.ast.symbolicexpression.command.*;
 import org.ioopm.calculator.ast.symbolicexpression.*;
 
+import org.ioopm.calculator.exceptions.*;
+
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.io.IOException;
@@ -16,8 +18,6 @@ import java.util.*;
  * Represents the parsing of strings into valid expressions defined in the AST.
  */
 public class CalculatorParser {
-
-    public class Environment extends HashMap<Variable, SymbolicExpression> {}
 
     private StreamTokenizer st;
     private Environment vars;
@@ -38,6 +38,9 @@ public class CalculatorParser {
     // or 10 + x = L is not allowed
     private final ArrayList < String > unallowedVars = 
                             new ArrayList < String > (Arrays.asList("Quit", "Vars","Clear"));
+
+
+                                
 
     /**
      * Used to parse the inputted string by the Calculator program
@@ -70,7 +73,7 @@ public class CalculatorParser {
         }
 
         if (this.st.ttype == this.st.TT_WORD) { // vilken typ det senaste tecken vi lÃ¤ste in hade.
-            if (this.st.sval.equals("Quit") || this.st.sval.equals("Vars") || this.st.sval.equals("Clear")) { // sval = string Variable
+            if (this.st.sval.equalsIgnoreCase("Quit") || this.st.sval.equalsIgnoreCase("Vars") || this.st.sval.equalsIgnoreCase("Clear")) { // sval = string Variable
                 result = command();
             } else {
                 result = assignment(); // gÃ¥r vidare med uttrycket.
@@ -96,12 +99,12 @@ public class CalculatorParser {
      * @throws IOException by nextToken() if it reads invalid input
      */
     private SymbolicExpression command() throws IOException {
-        if (this.st.sval.equals("Quit")) {
-            return new Quit();
-        } else if (this.st.sval.equals("Clear")) {
-            return new Clear();
+        if (this.st.sval.equalsIgnoreCase("Quit")) {
+            return Quit.instance();
+        } else if (this.st.sval.equalsIgnoreCase("Clear")) {
+            return Clear.instance();
         } else {
-            return new Vars();
+            return Vars.instance();
         }
     }
 
@@ -124,10 +127,10 @@ public class CalculatorParser {
             } else if (this.st.ttype != this.st.TT_WORD) {
                 throw new SyntaxErrorException("Error: Not a valid assignment of a variable"); //this handles faulty inputs after the equal sign eg. 1 = (x etc
             } else {
-                if (this.st.sval.equals("ans")) {
+                if (this.st.sval.equalsIgnoreCase("ans")) {
                     throw new SyntaxErrorException("Error: ans cannot be redefined");
                 }
-                SymbolicExpression key = identifier();
+                Variable key = (Variable) identifier();
                 result = new Assignment(result, key);
             }
             this.st.nextToken();
@@ -153,7 +156,7 @@ public class CalculatorParser {
             result = new NamedConstant(st.sval, Constants.namedConstants.get(st.sval));
         } else {
             result = new Variable(this.st.sval);
-        }
+    }
         return result;
     }
 
@@ -226,14 +229,15 @@ public class CalculatorParser {
             if (this.st.nextToken() != ')') {
                 throw new SyntaxErrorException("expected ')'");
             }
+            result = new Paren(result);
         } else if (this.st.ttype == NEGATION) {
             result = unary();
         } else if (this.st.ttype == this.st.TT_WORD) {
-            if (st.sval.equals(SIN) ||
-                st.sval.equals(COS) ||
-                st.sval.equals(EXP) ||
-                st.sval.equals(NEG) ||
-                st.sval.equals(LOG)) {
+            if (st.sval.equalsIgnoreCaseIgnoreCase(SIN) ||
+                st.sval.equalsIgnoreCase(COS) ||
+                st.sval.equalsIgnoreCase(EXP) ||
+                st.sval.equalsIgnoreCase(NEG) ||
+                st.sval.equalsIgnoreCase(LOG)) {
 
                 result = unary();
             } else {
@@ -257,13 +261,13 @@ public class CalculatorParser {
         int operationNeg = st.ttype;
         String operation = st.sval;
         this.st.nextToken();
-        if (operationNeg == NEGATION || operation.equals(NEG)) {
+        if (operationNeg == NEGATION || operation.equalsIgnoreCase(NEG)) {
             result = new Negation(primary());
-        } else if (operation.equals(SIN)) {
+        } else if (operation.equalsIgnoreCase(SIN)) {
             result = new Sin(primary());
-        } else if (operation.equals(COS)) {
+        } else if (operation.equalsIgnoreCase(COS)) {
             result = new Cos(primary());
-        } else if (operation.equals(LOG)) {
+        } else if (operation.equalsIgnoreCase(LOG)) {
             result = new Log(primary());
         } else {
             result = new Exp(primary());

@@ -1,6 +1,8 @@
 package org.ioopm.calculator.ast.symbolicexpression.unary;
 
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
+import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
+import org.ioopm.calculator.parser.Environment;
 
 public class Sin extends Unary
 {
@@ -10,13 +12,26 @@ public class Sin extends Unary
         super(exp);
     }
 
-    @Override 
-    public SymbolicExpression eval()
+    public String getName()
     {
-        SymbolicExpression e = this.expression.eval();
+        return "sin";
+    }
+    
+    @Override 
+    public String stringExpression()
+    {
+        return "sin" + expression.stringExpression();
+    }
+    
+    @Override 
+    public SymbolicExpression eval(Environment env)
+    {
+        SymbolicExpression e = this.expression.eval(env);
+        if(expression.isComand()) return expression;
         if(e.isConstant())
         {
-            return New Constant()
+            return new Constant(Math.sin(((Constant)e).get()));
         }
+        return new Sin(e);
     }
 }

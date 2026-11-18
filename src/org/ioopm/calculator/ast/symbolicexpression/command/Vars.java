@@ -1,9 +1,15 @@
 package org.ioopm.calculator.ast.symbolicexpression.command;
 
-public class Vars extends Command
-{
-    public Vars()
-    {
-        super("vars");
+public class Vars extends Command {
+    private static final Vars theInstance = new Vars();
+    private Vars() {}
+    public static Vars instance() {
+        return theInstance;
     }
+
+    @Override
+    public String getName() {
+        return "Vars";
+    }
+    
 }
