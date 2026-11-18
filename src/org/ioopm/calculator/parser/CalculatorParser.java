@@ -233,7 +233,7 @@ public class CalculatorParser {
         } else if (this.st.ttype == NEGATION) {
             result = unary();
         } else if (this.st.ttype == this.st.TT_WORD) {
-            if (st.sval.equalsIgnoreCaseIgnoreCase(SIN) ||
+            if (st.sval.CaseIgnoreCase(SIN) ||
                 st.sval.equalsIgnoreCase(COS) ||
                 st.sval.equalsIgnoreCase(EXP) ||
                 st.sval.equalsIgnoreCase(NEG) ||
