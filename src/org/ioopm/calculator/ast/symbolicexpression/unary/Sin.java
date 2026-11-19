@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The sinus of an expression, eg sin(5), sin(pi), sin(-x)
+ */
 public class Sin extends Unary
 {
 

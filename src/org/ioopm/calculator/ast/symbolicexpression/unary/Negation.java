@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The negation of an expression, eg -5, -x, -(x+3).
+ */
 public class Negation extends Unary
 {
 

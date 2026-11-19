@@ -2,6 +2,10 @@ package org.ioopm.calculator.ast.symbolicexpression.unary;
 
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 
+/**
+ * Abstract class. An operation which operations in respect to only one value, eg sin(val), -x,
+ * ({expression}), as opposed to a binary operation eg subtraction or division.
+ */
 public abstract class Unary extends SymbolicExpression
 {
     protected SymbolicExpression expression;

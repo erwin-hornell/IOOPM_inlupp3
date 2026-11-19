@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The natural logarithm of an expression, eg ln(1), ln(e), ln(x*5+2)
+ */
 public class Log extends Unary
 {
 

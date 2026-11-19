@@ -3,6 +3,9 @@ package org.ioopm.calculator.ast.symbolicexpression.atom;
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * A constant value. eg: 5, 0, 1.5, -2, etc.
+ */
 public class Constant extends Atom{
 
     private double value;

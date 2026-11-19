@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The division of a left-hand side value over a right-hand side value.
+ */
 public class Division extends Binary
 {
     public Division(SymbolicExpression lhs, SymbolicExpression rhs){

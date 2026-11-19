@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * A summation with a left-hand side value and a right-hand side value.
+ */
 public class Addition extends Binary
 {
     public Addition(SymbolicExpression lhs, SymbolicExpression rhs){

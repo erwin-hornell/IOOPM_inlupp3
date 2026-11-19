@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * Euler's Number to the power of an expression, eg e^3, e^pi, e^x
+ */
 public class Exp extends Unary
 {
 

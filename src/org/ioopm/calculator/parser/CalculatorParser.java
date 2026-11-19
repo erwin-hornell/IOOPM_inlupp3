@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Represents the parsing of strings into valid expressions defined in the AST.
+ * Class which parses strings into expressions defined in the AST.
  */
 public class CalculatorParser {
 
@@ -37,7 +37,7 @@ public class CalculatorParser {
     // want to assign new meaning to is a valid name eg 3 = Quit
     // or 10 + x = L is not allowed
     private final ArrayList < String > unallowedVars = 
-                            new ArrayList < String > (Arrays.asList("Quit", "Vars","Clear"));
+                            new ArrayList < String > (Arrays.asList("quit", "vars", "clear"));
 
 
                                 
@@ -148,8 +148,8 @@ public class CalculatorParser {
     private SymbolicExpression identifier() throws IOException {
         SymbolicExpression result;
 
-        if (this.unallowedVars.contains(this.st.sval)) {
-            throw new IllegalExpressionException("Error: cannot redefine " + this.st.sval);
+        if (this.unallowedVars.contains(this.st.sval.toLowerCase())) {
+            throw new IllegalExpressionException("Error: cannot redefine " + this.st.sval.toLowerCase());
         }
 
         if (Constants.namedConstants.containsKey(this.st.sval)) {

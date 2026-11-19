@@ -3,6 +3,9 @@ package org.ioopm.calculator.ast.symbolicexpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * Abstract class extended by all expressions in the ast. Represents some kind of expression.
+ */
 public abstract class SymbolicExpression {
     
 
