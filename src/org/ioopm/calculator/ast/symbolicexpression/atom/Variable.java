@@ -3,6 +3,9 @@ package org.ioopm.calculator.ast.symbolicexpression.atom;
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * A variable which may have a corresponding value in an environment. Eg x, y, z, LEET
+ */
 public class Variable extends Atom
 {
     private String name;

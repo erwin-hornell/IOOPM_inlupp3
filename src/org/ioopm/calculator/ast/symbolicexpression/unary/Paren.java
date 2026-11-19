@@ -3,6 +3,9 @@ package org.ioopm.calculator.ast.symbolicexpression.unary;
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * A an expression encapsulated by a pair of parentheses.
+ */
 public class Paren extends Unary
 {
 

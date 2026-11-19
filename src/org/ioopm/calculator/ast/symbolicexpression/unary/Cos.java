@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The cosinus of an expression, eg cos(5), cos(pi), cos(-x)
+ */
 public class Cos extends Unary
 {
 

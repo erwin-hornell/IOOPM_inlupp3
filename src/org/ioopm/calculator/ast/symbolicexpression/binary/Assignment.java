@@ -5,6 +5,9 @@ import org.ioopm.calculator.ast.symbolicexpression.atom.Variable;
 import org.ioopm.calculator.exceptions.IllegalAssignmentException;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The assignment of a left-hand side value to a right-hand side variable.
+ */
 public class Assignment extends Binary{
 
 

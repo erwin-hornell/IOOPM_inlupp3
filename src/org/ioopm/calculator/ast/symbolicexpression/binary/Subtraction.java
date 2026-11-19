@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The subtraction of a left-hand side value and right-hand side value.
+ */
 public class Subtraction extends Binary
 {
     public Subtraction(SymbolicExpression lhs, SymbolicExpression rhs){

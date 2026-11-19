@@ -3,6 +3,9 @@ package org.ioopm.calculator.ast.symbolicexpression.command;
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * Abstract class for all expressions which represent a command to the main program.
+ */
 public abstract class Command extends SymbolicExpression
 {
 

@@ -4,6 +4,9 @@ import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 import org.ioopm.calculator.ast.symbolicexpression.atom.Constant;
 import org.ioopm.calculator.parser.Environment;
 
+/**
+ * The multiplication of a left-hand side value with a right-hand side value.
+ */
 public class Multiplication extends Binary
 {
     public Multiplication(SymbolicExpression lhs, SymbolicExpression rhs){

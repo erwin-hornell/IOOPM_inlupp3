@@ -3,6 +3,10 @@ package org.ioopm.calculator.ast.symbolicexpression.binary;
 
 import org.ioopm.calculator.ast.symbolicexpression.SymbolicExpression;
 
+/**
+ * A value which depends on evaluating a left-hand side value with respect to a right-hand side value.
+ * Eg addition or multiplication.
+ */
 public abstract class Binary extends SymbolicExpression
 {
 

@@ -2,6 +2,9 @@ package org.ioopm.calculator.parser;
 
 import java.util.HashMap;
 
+/**
+ * Predefined constants: pi, e, etc.
+ */
 public class Constants {
     public static final HashMap<String, Double> namedConstants = new HashMap<>();
 

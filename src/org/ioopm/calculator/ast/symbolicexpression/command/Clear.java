@@ -1,5 +1,8 @@
 package org.ioopm.calculator.ast.symbolicexpression.command;
 
+/**
+ * Command for clearing the program's environment.
+ */
 public class Clear extends Command {
     private static final Clear theInstance = new Clear();
     private Clear() {}
@@ -11,5 +14,4 @@ public class Clear extends Command {
     public String getName() {
         return "Clear";
     }
-    
 }

@@ -8,6 +8,9 @@ import org.ioopm.calculator.exceptions.IllegalExpressionException;
 import org.ioopm.calculator.exceptions.SyntaxErrorException;
 import org.ioopm.calculator.parser.*;
 
+/**
+ * Calculator AST and Parser integration, main program loop.
+ */
 public class Calculator {
 
     private static int inputs = 0;
@@ -47,10 +50,11 @@ public class Calculator {
         while (true) {
             input = System.console().readLine();
             try{
+                inputs++;
+
                 tree = p.parse(input, env);
                 result = tree.eval(env);
 
-                inputs++;
                 if(result.isConstant())
                 {
                     sucInputs++;
@@ -65,7 +69,7 @@ public class Calculator {
             {
                 switch (result.getName()) {
                     case "Quit":
-                        System.out.println("\n you entered " + (inputs - 1) + " and " + (sucInputs - 1) + " was successfully evaluated");
+                        System.out.println("\n you entered " + (inputs - 1) + " and " + (sucInputs) + " was successfully evaluated");
                         return;
                     case "Clear":
                         env.clear();
@@ -76,11 +80,10 @@ public class Calculator {
                         printVars(env);
                         break;
                 }
-            }
-            else{
+            } else { // if command, don't print its "value" (the command's name)
                 env.put(ans, result);
-                System.err.println(tree.toString());
-                System.err.println(result.stringExpression());
+                System.out.println(tree.toString());
+                System.out.println(result.stringExpression());
             }
         }
     }
