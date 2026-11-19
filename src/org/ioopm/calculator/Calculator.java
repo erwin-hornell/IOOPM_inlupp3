@@ -69,7 +69,7 @@ public class Calculator {
             {
                 switch (result.getName()) {
                     case "Quit":
-                        System.out.println("\n you entered " + (inputs - 1) + " and " + (sucInputs) + " was successfully evaluated");
+                        System.out.println("\nYou entered " + (inputs - 1) + " and " + (sucInputs) + " was successfully evaluated");
                         return;
                     case "Clear":
                         env.clear();

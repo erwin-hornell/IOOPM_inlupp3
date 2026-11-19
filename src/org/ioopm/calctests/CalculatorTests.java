@@ -7,25 +7,9 @@ import org.ioopm.calculator.parser.CalculatorParser;
 import org.ioopm.calculator.parser.Environment;
 public class CalculatorTests
 {
-    private class Test
-    {
-        private boolean suc;
-        private String result;
-        private Test(boolean suc, String result)
-        {
-            this.suc = suc;
-            this.result = result;
-        }
-    }
     public static void main(String[] args) {
-        final CalculatorParser p = new CalculatorParser();
-        Environment env = new Environment();
 
-        String input;
-        SymbolicExpression result = null;
-        SymbolicExpression tree = null;
-        Variable ans = new Variable("ans");
-
+        System.err.println("\nCalcultor tests");
         
         if(testElementryFunc())
         {
@@ -62,8 +46,8 @@ public class CalculatorTests
         Environment env = new Environment();
         try {
             SymbolicExpression res = p.parse("3+x = y", env).eval(env);
-            return res.stringExpression() == "3.0+x" 
-                && env.get(new Variable("y")).stringExpression() == res.stringExpression();
+            return res.stringExpression().equals("3.0+x")
+                && env.get(new Variable("y")).stringExpression().equals(res.stringExpression());
         } catch (Exception e) {
             return false;
         }
@@ -74,7 +58,7 @@ public class CalculatorTests
         Environment env = new Environment();
         try {
             SymbolicExpression res = p.parse("x", env).eval(env);
-            return res.stringExpression() == "x";
+            return res.stringExpression().equals("x");
         } catch (Exception e) {
             return false;
         }
@@ -85,7 +69,7 @@ public class CalculatorTests
         Environment env = new Environment();
         try {
             SymbolicExpression res = p.parse("---2", env).eval(env);
-            return res.stringExpression() == "-2";
+            return res.stringExpression().equals("-2.0");
         } catch (Exception e) {
             return false;
         }
@@ -98,7 +82,7 @@ public class CalculatorTests
             p.parse("1/(2+8) = a", env).eval(env);
 
             SymbolicExpression res = p.parse("-sin(exp(a*a*10))", env).eval(env);
-            return res.stringExpression() == "-0.8935409432921488";
+            return res.stringExpression().equals("-0.8935409432921488");
         } catch (Exception e) {
             return false;
         }
