@@ -82,7 +82,6 @@ public class Calculator {
                 }
             } else { // if command, don't print its "value" (the command's name)
                 env.put(ans, result);
-                System.out.println(tree.toString());
                 System.out.println(result.stringExpression());
             }
         }
